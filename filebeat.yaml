@@ -1,0 +1,138 @@
+metadata:
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+  name: filebeat
+kind: ServiceAccount
+apiVersion: v1
+---
+metadata:
+  labels:
+    k8s-app: filebeat
+  name: filebeat
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+rules:
+- resources:
+  - namespaces
+  - pods
+  verbs:
+  - get
+  - watch
+  - list
+  apiGroups:
+  - ''
+---
+subjects:
+- namespace: kube-system
+  kind: ServiceAccount
+  name: filebeat
+metadata:
+  name: filebeat
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+roleRef:
+  kind: ClusterRole
+  name: filebeat
+  apiGroup: rbac.authorization.k8s.io
+---
+metadata:
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+  name: filebeat-config
+kind: ConfigMap
+data:
+  filebeat.yml: |-
+    filebeat.inputs:
+    - type: container
+      paths:
+        - /var/log/containers/*.log
+      processors:
+        - add_kubernetes_metadata:
+            host: ${NODE_NAME}
+            matchers:
+            - logs_path:
+                logs_path: "/var/log/containers/"
+
+    processors:
+      - add_cloud_metadata:
+      - add_host_metadata:
+    output.logstash:
+      loadbalance: true
+      bulk_max_size: 1024
+      hosts: ['${LOGSTASH_HOST:logger-logstash.elastic-system.svc.cluster.local}:${LOGSTASH_PORT:5044}']
+apiVersion: v1
+---
+metadata:
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+  name: filebeat
+kind: DaemonSet
+apiVersion: apps/v1
+spec:
+  selector:
+    matchLabels:
+      k8s-app: filebeat
+  template:
+    metadata:
+      labels:
+        k8s-app: filebeat
+    spec:
+      dnsPolicy: ClusterFirstWithHostNet
+      volumes:
+      - configMap:
+          defaultMode: 384
+          name: filebeat-config
+        name: config
+      - hostPath:
+          path: /var/lib/docker/containers
+        name: varlibdockercontainers
+      - hostPath:
+          path: /var/log
+        name: varlog
+      - hostPath:
+          type: DirectoryOrCreate
+          path: /var/lib/filebeat-data
+        name: data
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: filebeat
+        image: docker.elastic.co/beats/filebeat:8.0.0
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            memory: 200Mi
+        args:
+        - -c
+        - /etc/filebeat.yml
+        - -e
+        volumeMounts:
+        - subPath: filebeat.yml
+          readOnly: true
+          mountPath: /etc/filebeat.yml
+          name: config
+        - mountPath: /usr/share/filebeat/data
+          name: data
+        - readOnly: true
+          mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+        - readOnly: true
+          mountPath: /var/log
+          name: varlog
+        env:
+        - value: logger-logstash.elastic-system.svc.cluster.local
+          name: LOGSTASH_HOST
+        - value: '5044'
+          name: LOGSTASH_PORT
+        - valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+          name: NODE_NAME
+        securityContext:
+          runAsUser: 0
+      serviceAccountName: filebeat
+      hostNetwork: true

@@ -1,0 +1,494 @@
+metadata:
+  namespace: elastic-system
+  labels:
+    app: logstash
+  name: logger-logstash
+kind: ServiceAccount
+apiVersion: v1
+---
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUR0VENDQXAyZ0F3SUJBZ0lRRDM5TTFCN3VkemxXTkNuM1piL1RtVEFOQmdrcWhraUc5dzBCQVFzRkFEQXAKTVJBd0RnWURWUVFMRXdka1pXMXZaV3hyTVJVd0V3WURWUVFERXd4a1pXMXZaV3hyTFdoMGRIQXdIaGNOTWpBdwpOREEzTURreU1UVXpXaGNOTWpFd05EQTNNRGt6TVRVeldqQkVNUkF3RGdZRFZRUUxFd2RrWlcxdlpXeHJNVEF3CkxnWURWUVFERXlka1pXMXZaV3hyTFdWekxXaDBkSEF1Wld4aGMzUnBZeTF6ZVhOMFpXMHVaWE11Ykc5allXd3cKZ2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRQzgvdm81c0duMzUvaVlrRmlkS3M0egpHYWhQVmdOTmNVdG1Ka0pMNVRnemJFaGxZSkUxTWFkc2hTYlhFcGx3MGJPUWxMdEpBY3dRYkpPVyt2c1lnRk96CkxNOUYrb0NZRmJWMWZBelFLTXZPN0RpZUNRWnkyRW5HWVFiQ3Y2ai8ydEZRRFhkTnhsNlA1ZkJ0LzRhaXhKN2YKK1lEb1VZVkp4THdRMEU5bkJCdzdYYzU5NGU2VGFCRTVxcFZZVUtYam5veGI2WFpRQmZwOFZNK2ZhaHhPR2wxNgpPUkVPSmgvaXZSalpVYjJJNW1SSTNZM04yQU4zK1MxSHFuVGdwMHZuWHBsUksyc1M2RDhBWUZoM09ad0szS0VlCm5FcTN1UTR4VXgzZXNzc082SFY0aDZ4QVNjUTZjWW5iZjJvME40ck5qb1pSZDdFeFFZQ3ZDNWhQbWl3NlNFZDEKQWdNQkFBR2pnYjB3Z2Jvd0RnWURWUjBQQVFIL0JBUURBZ1dnTUIwR0ExVWRKUVFXTUJRR0NDc0dBUVVGQndNQgpCZ2dyQmdFRkJRY0RBakNCaUFZRFZSMFJCSUdBTUg2Q0oyUmxiVzlsYkdzdFpYTXRhSFIwY0M1bGJHRnpkR2xqCkxYTjVjM1JsYlM1bGN5NXNiMk5oYklJUFpHVnRiMlZzYXkxbGN5MW9kSFJ3Z2lKa1pXMXZaV3hyTFdWekxXaDAKZEhBdVpXeGhjM1JwWXkxemVYTjBaVzB1YzNaamdoNWtaVzF2Wld4ckxXVnpMV2gwZEhBdVpXeGhjM1JwWXkxegplWE4wWlcwd0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFJcyt4M1ZXRFhWKzhvV2JXYlRpTzBFL20xcmJJVmg1CjRjanJhT0NMUXBWN0YyT05mWTM5c3NPc0xoWE5WR21TVFU4UDlOL1g2SGlvZkFlbXBFc0RJT3hFdGZOdndhaCsKcmZoMldCSlZIL1lpSSt2Q0tqZEljZ2lIRE0wYlU5Y01IcmxMbWtBYUsrL2lPTVBzN2tQUkVTL3FSOFM2eTkvTwpRZlJ5YmtLb2hwY29aMkNkcDFaQ08vZjFOd3gwekw0a1hzSFhmMDZadjlPcG42NlRjdkdtZ0t3SjJ1MkNXdnN6ClZ1Mzg0NFVUQXo4SFA5UjRpbkE2bjhnY1B4UHp1bkZkMjFub3lvalZUeFQ4aklPWWNlWno1bHNyTG5Gd0hXY28Kcm9JMURZNzAvZ1E5V2ZiN2Y1YnN1dHhBaVJyNG5KYUxrOGN4M1VSY012YVFvSG5sNmM4QmJmOD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQotLS0tLUJFR0lOIENFUlRJRklDQVRFLS0tLS0KTUlJREh6Q0NBZ2VnQXdJQkFnSVJBTW1UYVZLL0NhZmlaWkozZklucEdCOHdEUVlKS29aSWh2Y05BUUVMQlFBdwpLVEVRTUE0R0ExVUVDeE1IWkdWdGIyVnNhekVWTUJNR0ExVUVBeE1NWkdWdGIyVnNheTFvZEhSd01CNFhEVEl3Ck1EUXdOekE1TXpBMU0xb1hEVEl4TURRd056QTVNekUxTTFvd0tURVFNQTRHQTFVRUN4TUhaR1Z0YjJWc2F6RVYKTUJNR0ExVUVBeE1NWkdWdGIyVnNheTFvZEhSd01JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQgpDZ0tDQVFFQTJ1dEpLUzhmUUoxZFpWbVp1YlBiWitQejZlYmNOVmRpbHUxZkxoY3BvTWxlTVYwN0lqWkxaTkszClN4M3hsVXpQcmsxTWsyTFU5ZFJ3bmppSUxBdXl6cUY4SkNPWTdtd3Y3UXM3WkxsSHpNZEdMT21rQ244b0lUL1YKbWZFR2oxM1I5TXlUVEUxQis2UUdJODVla0RvL2l2VkV1aXNzS09wb24vREJSZ2ZSaDNBTmYvR2M2c2cxSzRCTwpIbStoTDN3ei83eXE2S1drNThlaEk0a1BCNkNsUUJCSE9GSXlld0d1TkdLck9kdmF4N3FwdmRqbmZJT0lTdU9kCnlDUTg3dFpZcG9pRFZGckpHV1lLbHhYM0k4cC9wblRkZlJJS25CbDFYMG9oVWw1eFNtNDNRT0l2SXA2YUNwcm4Kdzl4NjNpVU10b2g1dFBiRjkrU2FyY1JrcW1WMjF3SURBUUFCbzBJd1FEQU9CZ05WSFE4QkFmOEVCQU1DQW9RdwpIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUhBd0VHQ0NzR0FRVUZCd01DTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3CkRRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKQldMU0ZoQjVhcHBYS00zM25lN1NVM045S3hTS1pkTG5xYmFwZDQKRmJ3TEdUOUJrcTVhTmJ2NFZoQUJQTENvaTJGWm5YOFNKbW1yclBnWDNtTkVjYXpaSnhZVW1RQWVmUHk4TFhxaApxL3l2WWRxZHJsaDFzTXhvNmZYbnIyM3dvcjIxV3piY0F5MzhvWld4YzBxc3NMRGJiTHcyU0RRNGpnRVpwMEh3CkpXUzY2aDlTTXNQNjlSUFZrRWJkeWJmMEhOZHk0bm5ncSs4a0U0cjlEa0lMSVJ4SnBKVnh0bnZUeXFpZnJhS1QKYWNrUVFUdmpFUmFVdlg4K2JPZ0wrRnRQU1paZDVrSzFYTlVqRFFGd1M1Q2dwOGNhRXRWK0tGcGxCcGlXMGl3WQp1Z0UrUDdxM0FRcGdxNnJLcVY5a29GTElya00rMEhOMUUweStPZmszbitSZ0JaQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+binaryData: null
+metadata:
+  namespace: elastic-system
+  labels:
+    app: logstash
+  name: logger-logstash-files
+kind: ConfigMap
+apiVersion: v1
+---
+metadata:
+  namespace: elastic-system
+  labels:
+    app: logstash
+  name: logger-logstash-patterns
+kind: ConfigMap
+data: null
+apiVersion: v1
+---
+metadata:
+  namespace: elastic-system
+  labels:
+    app: logstash
+  name: logger-logstash-pipeline
+kind: ConfigMap
+data:
+  input_main.conf: |-
+    input {
+      beats {
+        port => 5044
+      }
+    }
+  filter_main.conf: |-
+    filter {
+    if ([kubernetes][namespace] == "tenant-management") {
+      json {
+        source => "message"
+      }
+    }
+    }
+  output_main.conf: |-
+    output {
+        if ([message] =~"audit"
+            or[message] =~"AUDIT") {
+            elasticsearch {
+                user => "elastic"
+                password => "${ELPASSWORD}"
+                hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+                ssl => false
+                ilm_rollover_alias => "auditalias"
+                ilm_pattern => "{now/d}-0001"
+                ilm_policy => "audit_policy"
+            }
+        }
+        if ([kubernetes][namespace] == "platform"
+            or[kubernetes][namespace] == "elastic-system"
+            or[kubernetes][namespace] == "kube-system") {
+            elasticsearch {
+                user => "elastic"
+                password => "${ELPASSWORD}"
+                hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+                ssl => false
+                ilm_rollover_alias => "platformalias"
+                ilm_pattern => "{now/d}-0001"
+                ilm_policy => "platform_policy"
+            }
+        }
+        else if ([kubernetes][namespace] == "tenant-management") {
+            elasticsearch {
+                user => "elastic"
+                password => "${ELPASSWORD}"
+                hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+                ssl => false
+                ilm_rollover_alias => "applicationalias"
+                ilm_pattern => "{now/d}-0001"
+                ilm_policy => "application_policy"
+            }
+        }
+        else {
+            elasticsearch {
+                user => "elastic"
+                password => "${ELPASSWORD}"
+                hosts => ["${ELASTICSEARCH_HOST}:${ELASTICSEARCH_PORT}"]
+                ssl => false
+                ilm_rollover_alias => "undecidedalias"
+                ilm_pattern => "{now/d}-0001"
+                ilm_policy => "undecided_policy"
+            }
+        }
+    }
+apiVersion: v1
+---
+metadata:
+  namespace: elastic-system
+  name: logging-configurator
+kind: ConfigMap
+data:
+  elastic.sh: |
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_template/application_template <<EOF
+    {
+      "index_patterns": ["application*"],
+      "order": -1,
+      "settings": {
+        "index.lifecycle.name": "application_policy",
+        "index.lifecycle.rollover_alias": "applicationalias",
+        "index.highlight.max_analyzed_offset": 10000000
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_template/platform_template <<EOF
+    {
+      "index_patterns": ["platform*"],
+      "order": -1,
+      "settings": {
+        "index.lifecycle.name": "platform_policy",
+        "index.lifecycle.rollover_alias": "platformalias",
+        "index.highlight.max_analyzed_offset": 10000000
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_template/audit_template <<EOF
+    {
+      "index_patterns": ["audit*"],
+      "order": -1,
+      "settings": {
+        "index.lifecycle.name": "audit_policy",
+        "index.lifecycle.rollover_alias": "auditalias",
+        "index.highlight.max_analyzed_offset": 10000000
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_template/ingress_template <<EOF
+    {
+      "index_patterns": ["ingress*"],
+      "order": -1,
+      "settings": {
+        "index.lifecycle.name": "ingress_policy",
+        "index.lifecycle.rollover_alias": "ingressalias",
+        "index.highlight.max_analyzed_offset": 10000000
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_template/undecided_template <<EOF
+    {
+      "index_patterns": ["undecided*"],
+      "order": -1,
+      "settings": {
+        "index.lifecycle.name": "undecided_policy",
+        "index.lifecycle.rollover_alias": "undecidedalias"
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_ilm/policy/application_policy <<EOF
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover": {
+                "max_size": "20GB"
+              }
+            }
+          },
+          "delete": {
+            "min_age":"7d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_ilm/policy/platform_policy <<EOF
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover": {
+                "max_size": "10GB"
+              }
+            }
+          },
+          "delete": {
+            "min_age":"7d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_ilm/policy/ingress_policy <<EOF
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover": {
+                "max_size": "20GB"
+              }
+            }
+          },
+          "delete": {
+            "min_age":"14d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_ilm/policy/audit_policy <<EOF
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover": {
+                "max_size": "25GB"
+              }
+            }
+          },
+          "delete": {
+            "min_age":"365d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }
+    EOF
+    curl -u elastic:PW_REPLACE -XPUT -H"Content-Type: application/json" --data @- \
+        http://elasticsearch-es-http.elastic-system.svc:9200/_ilm/policy/undecided_policy <<EOF
+    {
+      "policy": {
+        "phases": {
+          "hot": {
+            "actions": {
+              "rollover": {
+                "max_size": "25GB"
+              }
+            }
+          },
+          "delete": {
+            "min_age":"7d",
+            "actions": {
+              "delete": {}
+            }
+          }
+        }
+      }
+    }
+    EOF
+  kibana.sh: |
+    curl -u elastic:PW_REPLACE -XPOST http://kibana-kb-http.elastic-system.svc:5601/api/saved_objects/index-pattern/application* -H "Content-Type: application/json" -H "kbn-xsrf: true" -d'
+    {
+      "attributes": {
+            "title": "application*",
+            "timeFieldName": "@timestamp"
+      }
+    }'
+    curl -u elastic:PW_REPLACE -XPOST http://kibana-kb-http.elastic-system.svc:5601/api/saved_objects/index-pattern/platform* -H "Content-Type: application/json" -H "kbn-xsrf: true" -d'
+    {
+      "attributes": {
+            "title": "platform*",
+            "timeFieldName": "@timestamp"
+      }
+    }'
+    curl -u elastic:PW_REPLACE -XPOST http://kibana-kb-http.elastic-system.svc:5601/api/saved_objects/index-pattern/audit-* -H "Content-Type: application/json" -H "kbn-xsrf: true" -d'
+    {
+      "attributes": {
+            "title": "audit*",
+            "timeFieldName": "@timestamp"
+      }
+    }'
+    curl -u elastic:PW_REPLACE -XPOST http://kibana-kb-http.elastic-system.svc:5601/api/saved_objects/index-pattern/undecided* -H "Content-Type: application/json" -H "kbn-xsrf: true" -d'
+    {
+      "attributes": {
+            "title": "undecided*",
+            "timeFieldName": "@timestamp"
+      }
+    }'
+    curl -u elastic:PW_REPLACE -XPOST http://kibana-kb-http.elastic-system.svc:5601/api/saved_objects/index-pattern/ingress* -H "Content-Type: application/json" -H "kbn-xsrf: true" -d'
+    {
+      "attributes": {
+            "title": "ingress*",
+            "timeFieldName": "@timestamp"
+      }
+    }'
+  run: |
+    cp /logging_setup/* /tmp
+    sed -i 's/PW_REPLACE/$ELPASSWORD/' /tmp/kibana.sh
+    sed -i 's/PW_REPLACE/$ELPASSWORD/' /tmp/elastic.sh
+    /bin/sh /tmp/kibana.sh
+    /bin/sh /tmp/elastic.sh
+apiVersion: v1
+---
+data:
+  kibana_token: cmVhZG9ubHk6a2liYW5h
+metadata:
+  namespace: elastic-system
+  name: kibana-token
+kind: Secret
+apiVersion: v1
+type: Opaque
+---
+metadata:
+  namespace: elastic-system
+  labels:
+    app: logstash
+  name: logger-logstash
+kind: Service
+apiVersion: v1
+spec:
+  type: ClusterIP
+  ports:
+  - name: beats
+    targetPort: beats
+    protocol: TCP
+    port: 5044
+  selector:
+    app: logstash
+    release: logger
+---
+metadata:
+  namespace: elastic-system
+  labels:
+    app: logstash
+  name: logger-logstash
+kind: StatefulSet
+apiVersion: apps/v1
+spec:
+  serviceName: logger-logstash
+  replicas: 3
+  podManagementPolicy: OrderedReady
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      resources:
+        requests:
+          storage: 10Gi
+      accessModes:
+      - ReadWriteOnce
+  template:
+    metadata:
+      labels:
+        app: logstash
+        release: logger
+    spec:
+      initContainers: null
+      volumes:
+      - configMap:
+          name: logger-logstash-patterns
+        name: patterns
+      - configMap:
+          name: logger-logstash-files
+        name: files
+      - configMap:
+          name: logger-logstash-pipeline
+        name: pipeline
+      terminationGracePeriodSeconds: 30
+      containers:
+      - readinessProbe:
+          initialDelaySeconds: 20
+          httpGet:
+            port: monitor
+            path: /
+        name: logstash
+        livenessProbe:
+          initialDelaySeconds: 20
+          httpGet:
+            port: monitor
+            path: /
+        image: docker.elastic.co/logstash/logstash:8.0.0
+        ports:
+        - containerPort: 9600
+          name: monitor
+          protocol: TCP
+        - containerPort: 5044
+          name: beats
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 200m
+            memory: 100Mi
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /usr/share/logstash/data
+          name: data
+        - mountPath: /usr/share/logstash/patterns
+          name: patterns
+        - mountPath: /usr/share/logstash/files
+          name: files
+        - mountPath: /usr/share/logstash/pipeline
+          name: pipeline
+        env:
+        - valueFrom:
+            secretKeyRef:
+              key: elastic
+              name: elasticsearch-es-elastic-user
+          name: ELPASSWORD
+        - value: 0.0.0.0
+          name: HTTP_HOST
+        - value: '9600'
+          name: HTTP_PORT
+        - value: elasticsearch-es-http.elastic-system.svc.cluster.local
+          name: ELASTICSEARCH_HOST
+        - value: '9200'
+          name: ELASTICSEARCH_PORT
+        - value: -Xmx4g -Xms4g
+          name: LS_JAVA_OPTS
+        - value: 'true'
+          name: CONFIG_RELOAD_AUTOMATIC
+        - value: /usr/share/logstash/pipeline
+          name: PATH_CONFIG
+        - value: /usr/share/logstash/data
+          name: PATH_DATA
+        - value: '4096'
+          name: QUEUE_CHECKPOINT_WRITES
+        - value: 'true'
+          name: QUEUE_DRAIN
+        - value: 1gb
+          name: QUEUE_MAX_BYTES
+        - value: persisted
+          name: QUEUE_TYPE
+        - value: '100'
+          name: PIPELINE_BATCH_DELAY
+        - value: '250'
+          name: PIPELINE_BATCH_SIZE
+        - value: '4'
+          name: PIPELINE_WORKERS
+      serviceAccountName: logger-logstash
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
+  selector:
+    matchLabels:
+      app: logstash
+      release: logger
+
+---
+metadata:
+  namespace: elastic-system
+  name: logging-setup
+kind: Job
+apiVersion: batch/v1
+spec:
+  template:
+    spec:
+      containers:
+      - name: logging-setup
+        image: centos
+        command:
+        - /bin/sh
+        args:
+        - /logging_setup/run
+        volumeMounts:
+        - mountPath: /logging_setup
+          name: config-volume
+        env:
+        - valueFrom:
+            secretKeyRef:
+              key: elastic
+              name: elasticsearch-es-elastic-user
+          name: ELPASSWORD
+      volumes:
+      - configMap:
+          name: logging-configurator
+        name: config-volume
+      restartPolicy: Never

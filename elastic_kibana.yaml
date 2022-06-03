@@ -1,0 +1,61 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+  namespace: elastic-system
+  annotations:
+    co.elastic.logs/json.add_error_key: "true"
+    co.elastic.logs/json.message_key: "discovered_log"
+spec:
+  version: 7.6.2
+  nodeSets:
+  - name: default
+    count: 3
+    config:
+      node.store.allow_mmap: false
+    podTemplate:
+      metadata:
+        annotations:
+          co.elastic.logs/json.add_error_key: "true"
+    volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-data
+      spec:
+        resources:
+          requests:
+            storage: 5Gi
+        accessModes:
+        - ReadWriteOnce
+        storageClassName: default
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+    service:
+      spec:
+        type: NodePort
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+  namespace: elastic-system
+  annotations:
+    co.elastic.logs/json.add_error_key: "true"
+    co.elastic.logs/json.message_key: "discovered_log"
+spec:
+  version: 7.6.2
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch
+  podTemplate:
+    metadata:
+      annotations:
+        co.elastic.logs/json.add_error_key: "true"
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+    service:
+      spec:
+        type: NodePort
